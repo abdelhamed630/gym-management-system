@@ -1,0 +1,94 @@
+/* 🌟 الهيدر */
+.dashboard-header {
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+.dashboard-title {
+    font-size: 2rem;
+    color: #023e8a;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 🚀 زر إنشاء سجل */
+.create-btn {
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 0.6rem 1.5rem;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+}
+.create-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 119, 182, 0.45);
+    text-decoration: none;
+}
+
+/* 🔍 محرك البحث */
+.search-form {
+    max-width: 600px;
+    margin: auto;
+}
+.glow-btn {
+    transition: all 0.3s ease-in-out;
+}
+.glow-btn:hover {
+    box-shadow: 0 0 15px #0d6efd, 0 0 30px #0d6efd;
+    transform: scale(1.05);
+}
+
+/* 🏋️‍♂️ سكشن السجلات */
+.records-section {
+    background: #f9fbfd;
+    min-height: 100vh;
+    direction: rtl;
+}
+.records-title {
+    color: #005f73;
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 📊 الجدول */
+.table {
+    border-radius: 15px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+thead {
+    background: linear-gradient(135deg, #90e0ef, #00b4d8);
+    color: #003049;
+}
+thead th {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+tbody td {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000 !important;
+}
+tbody tr:hover {
+    background-color: #edf6f9;
+    transition: 0.3s;
+}
+
+/* 👁 زر العرض */
+.view-btn {
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0, 119, 182, 0.2);
+}
+.view-btn:hover {
+    background: linear-gradient(135deg, #0096c7, #023e8a);
+    box-shadow: 0 0 12px #0096c7, 0 0 20px #0096c7;
+    transform: scale(1.05);
+    color: #fff;
+    text-decoration: none;
+}

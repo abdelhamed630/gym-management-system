@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags static %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-start py-5"
+     style="min-height: 85vh; background: linear-gradient(135deg, #e3f2fd, #ffffff);">
+
+    <div class="col-md-7 col-lg-6">
+
+        <!-- كارت واسع -->
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden" 
+             style="background: #ffffff;">
+
+            <!-- الهيدر -->
+            <div class="card-header text-center py-3" 
+                 style="background: linear-gradient(135deg, #6dd5ed, #2193b0);">
+                <h3 class="mb-0 text-white fw-bold">
+                    🏋️‍♂️ استمارة تسجيل بيانات الجيم
+                </h3>
+            </div>
+
+            <!-- المحتوى -->
+            <div class="card-body p-4">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <button type="submit" 
+                            class="btn w-100 mt-3"
+                            style="background: linear-gradient(135deg, #2193b0, #6dd5ed);
+                                   color: white; 
+                                   font-weight: 700; 
+                                   font-size: 1.1rem;
+                                   border-radius: 12px;
+                                   padding: 10px;
+                                   transition: 0.3s;">
+                        ✅ تأكيد البيانات
+                    </button>
+                </form>
+            </div>
+
+            <!-- الفوتر -->
+            <div class="card-footer text-center py-2 bg-light">
+                <small class="text-muted fw-semibold" style="font-size: 0.95rem;">
+                    💡 صحتك هي استثمارك الأغلى
+                </small>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .card {
+        animation: fadeInUp 0.7s ease-in-out;
+    }
+
+    button:hover {
+        transform: scale(1.04);
+        box-shadow: 0 6px 18px rgba(33, 147, 176, 0.4);
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock content %}

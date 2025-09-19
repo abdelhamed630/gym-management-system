@@ -1,0 +1,67 @@
+
+    {% if messages %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                {% for message in messages %}
+                    <div class="alert 
+                        {% if message.tags == 'success' %} alert-success 
+                        {% elif message.tags == 'error' %} alert-danger 
+                        {% elif message.tags == 'warning' %} alert-warning 
+                        {% else %} alert-info {% endif %} 
+                        shadow-sm rounded-4 d-flex align-items-center p-3 mb-3 fade show custom-alert" 
+                        role="alert"
+                        style="font-size:1rem; animation: fadeInDown 0.6s ease;">
+                        
+                        <!-- أيقونة -->
+                        {% if message.tags == 'success' %}
+                            <i class="bi bi-check-circle-fill fs-4 me-2 text-success"></i>
+                        {% elif message.tags == 'error' %}
+                            <i class="bi bi-x-circle-fill fs-4 me-2 text-danger"></i>
+                        {% elif message.tags == 'warning' %}
+                            <i class="bi bi-exclamation-triangle-fill fs-4 me-2 text-warning"></i>
+                        {% else %}
+                            <i class="bi bi-info-circle-fill fs-4 me-2 text-info"></i>
+                        {% endif %}
+                        
+                        <!-- نص الرسالة -->
+                        <span class="flex-grow-1 fw-semibold">{{ message }}</span>
+                        
+                        <!-- زر إغلاق -->
+                        <button type="button" class="btn-close ms-3" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+    {% endif %}
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<!-- أنيميشن CSS -->
+<style>
+@keyframes fadeInDown {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeOutUp {
+  from {opacity: 1; transform: translateY(0);}
+  to {opacity: 0; transform: translateY(-20px);}
+}
+</style>
+
+<!-- Script لإخفاء الرسالة بعد 2 ثانية -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const alerts = document.querySelectorAll(".custom-alert");
+    alerts.forEach(alert => {
+        // بعد ثانيتين تبدأ الأنيميشن وتختفي
+        setTimeout(() => {
+            alert.style.animation = "fadeOutUp 0.6s ease forwards";
+            setTimeout(() => alert.remove(), 600); // بعد انتهاء الأنيميشن يتم المسح
+        }, 2000);
+    });
+});
+</script>
+

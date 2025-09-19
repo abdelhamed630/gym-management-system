@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Error • Page not found</title>
+  <style>
+    :root{--bg1:#0f1724;--bg2:#07203a;--accent:#06b6d4;--muted:#9aa7b2}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Tahoma, "Helvetica Neue", Arial, system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(6,182,212,0.08), transparent 8%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      color:#e6eef3;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width:100%;
+      max-width:800px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      padding:36px;
+      display:grid;
+      grid-template-columns: 1fr 300px;
+      gap:28px;
+      align-items:center;
+    }
+    .content h1{font-size:3.2rem;margin:0 0 8px}
+    .code{display:inline-block;padding:6px 12px;border-radius:10px;background:rgba(255,255,255,0.04);font-weight:700;color:var(--accent);}
+    .lead{color:var(--muted);margin:10px 0 18px;font-size:1.06rem}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      appearance:none;border:0;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;backface-visibility:hidden;
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#3b82f6);color:#022;box-shadow:0 6px 18px rgba(6,182,212,0.12);}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dbeafe}
+    .hint{font-size:0.92rem;color:var(--muted);margin-top:12px}
+
+    /* Illustration column */
+    .illus{display:flex;flex-direction:column;align-items:center;gap:18px;padding:12px}
+    .bubble{width:200px;height:200px;border-radius:18px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(2,6,23,0.6);position:relative;overflow:hidden}
+    .bubble svg{width:140px;height:140px;transform:translateY(-6px)}
+    .glow{position:absolute;inset:auto -40% -40% -40%;filter:blur(60px);opacity:0.28;background:radial-gradient(circle at 30% 20%, rgba(6,182,212,0.18), transparent 18%)}
+
+    /* subtle float */
+    .bubble{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+
+    /* responsive */
+    @media (max-width:720px){
+      .card{grid-template-columns:1fr;max-width:90%}
+      .illus{order:-1}
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="err-title">
+    <section class="content">
+      <div class="code" aria-hidden="true">Error 404</div>
+      <h1 id="err-title">Sorry — the page you are looking for cannot be found</h1>
+      <p class="lead">The page might have been moved, deleted, or the URL might be incorrect. Don’t worry — we’ll help you get back on track.</p>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="goHome()" aria-label="Go to homepage">Go to Homepage</button>
+        <button class="btn btn-outline" onclick="goBack()" aria-label="Go back">Go Back</button>
+      </div>
+
+      <div class="hint">Or try the <a href="/" style="color:var(--accent);text-decoration:none">homepage</a> or our <a href="/contact" style="color:var(--accent);text-decoration:none">contact page</a>.</div>
+    </section>
+
+    <aside class="illus" aria-hidden="true">
+      <div class="bubble">
+        <div class="glow"></div>
+        <!-- simple SVG illustration -->
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+            <path d="M32 6c-14.36 0-26 7.163-26 16s11.64 16 26 16 26-7.163 26-16S46.36 6 32 6z"/>
+            <path d="M22 30c1.6 2.4 4.6 4 10 4s8.4-1.6 10-4"/>
+            <path d="M27 26h2v2h-2zM35 26h2v2h-2z"/>
+          </g>
+        </svg>
+      </div>
+      <div style="text-align:center;color:var(--muted);font-size:0.95rem">Error code: <strong>404</strong><br>Rendered in the browser — you can easily edit the text or style.</div>
+    </aside>
+  </main>
+
+  <script>
+    function goHome(){location.href='/'}
+    function goBack(){if(history.length>1) history.back(); else goHome()}
+  </script>
+</body>
+</html>

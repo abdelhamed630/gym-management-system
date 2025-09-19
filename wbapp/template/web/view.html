@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5" style="background: #f9fbfd; min-height: 100vh; direction: rtl;">
+    <!-- عنوان -->
+    <h2 class="text-center mb-5 fw-bold" style="color:#005f73; font-size:2rem;">
+        🏋️‍♂️ تفاصيل العضو
+    </h2>
+
+    <!-- كارت بيانات العضو -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+                    <!-- الاسم -->
+                    <h4 class="fw-bold text-dark mb-3">
+                        👤 {{ record.name }}
+                    </h4>
+
+                    <!-- التفاصيل -->
+                    <ul class="list-unstyled mb-0 text-dark">
+                        <li><strong>📞 الهاتف:</strong> {{ record.phone }}</li>
+                        <li><strong>🏷 الفئة:</strong> {{ record.category }}</li>
+                        <li><strong>📏 الطول:</strong> {{ record.tall }} سم</li>
+                        <li><strong>⚖ الوزن:</strong> {{ record.wedight }} كجم</li>
+                        <li><strong>📍 العنوان:</strong> {{ record.adderss }}</li>
+                        <li><strong>💳 حالة الدفع :</strong>     <td>
+                        {% if record.is_active %}
+                            <span class="status-green"> ✔ {{record.days_left}}مدفوع  </span>
+                        {% else %}
+                            <span class="status-red">❌ منتهي</span>
+                        {% endif %}
+                    </td></li> 
+                        <li><strong>🆔 الرقم التعريفي:</strong> {{ record.id }}</li> 
+                        <li><strong>🕒 تاريخ التسجيل:</strong> {{ record.create_at|date:"Y-m-d H:i" }}</li>
+                    </ul>
+
+                    <!-- الأزرار -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <!-- زر التحديث -->
+                        <a href="{% url 'update_record' record.id %}" 
+                           class="btn px-4 py-2 update-btn">
+                            ✏️ تعديل البيانات
+                        </a>
+
+                        <!-- زر الحذف -->
+                        <a href="{% url 'delete' record.id %}" 
+                           class="btn px-4 py-2 delete-btn"
+                           onclick="return confirm('هل أنت متأكد أنك تريد حذف هذا السجل؟');">
+                            🗑️ حذف
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+    .card {
+        transition: 0.3s;
+        background: #ffffff;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .card h4 {
+        color: #005f73;
+    }
+    .card ul li {
+        padding: 8px 0;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #222;
+    }
+    .card ul li strong {
+        color: #0a9396;
+    }
+    .update-btn {
+        background: linear-gradient(135deg, #0077b6, #00b4d8);
+        color: white;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .update-btn:hover {
+        background: #023e8a;
+        transform: scale(1.05);
+    }
+    .delete-btn {
+        background: linear-gradient(135deg, #e63946, #d90429);
+        color: white;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .delete-btn:hover {
+        background: #9d0208;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock content %}

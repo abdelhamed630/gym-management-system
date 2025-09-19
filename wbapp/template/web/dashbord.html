@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-4" style="background: linear-gradient(135deg, #e0f7fa, #ffffff);">
+    <div class="d-flex justify-content-between align-items-center px-4">
+        <h2 class="fw-bold mb-0" style="font-size: 2rem; color: #023e8a;">
+            👋 Welcome to Dashboard Page
+        </h2>
+        <a href="{% url 'record' %}" class="btn px-4 py-2 shadow-lg"
+           style="background: linear-gradient(135deg, #0077b6, #00b4d8);
+                  color: white; font-size: 1.15rem; font-weight: 700;
+                  border-radius: 12px; transition: 0.3s;">
+            🚀 Create Record
+        </a>
+    </div>
+</div>
+
+<!-- ✅ الرسائل -->
+<div class="container mt-3">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-4" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<!-- 🔍 محرك البحث -->
+<form method="GET" action="{% url 'search' %}" 
+      class="d-flex justify-content-center my-5" style="max-width: 600px; margin: auto;">
+  <div class="input-group shadow-lg rounded-4 overflow-hidden">
+    <input type="text" name="q" class="form-control form-control-lg" placeholder="🔍 ابحث هنا..." value="{{ q }}">
+    <button class="btn btn-primary px-4 fw-bold glow-btn" type="submit">بحث</button>
+  </div>
+</form>
+
+<div class="container py-5" style="background: #f9fbfd; min-height: 100vh; direction: rtl;">
+    <h2 class="text-center mb-5 fw-bold" style="color:#005f73; font-size:2.2rem;">
+        🏋️‍♂️ سجلات الأعضاء
+    </h2>
+
+    <div class="table-responsive shadow rounded-4">
+        <table class="table table-bordered table-hover align-middle text-center mb-0">
+            <thead style="background: linear-gradient(135deg, #90e0ef, #00b4d8); color: #003049;">
+                <tr>
+                    <th>👁 View</th>
+                    <th>👤 الاسم</th>
+                    <th>📞 الهاتف</th>
+                    <th>🏷 الفئة</th>
+                    <th>📏 الطول</th>
+                    <th>⚖ الوزن</th>
+                    <th>📍 العنوان</th>
+                    <th>💳 حالة الدفع</th>
+                    <th>ID</th>
+                    <th>🔄 تجديد</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rec in record %}
+                <tr>
+                    <td>
+                        <a href="{% url 'view' rec.id %}" class="btn btn-sm view-btn">
+                            <i class="bi bi-eye"></i> View
+                        </a>
+                    </td>
+                    <td>{{ rec.name }}</td>
+                    <td>{{ rec.phone }}</td>
+                    <td>{{ rec.category }}</td>
+                    <td>{{ rec.tall }}</td>
+                    <td>{{ rec.wedight }}</td>
+                    <td>{{ rec.adderss }}</td>
+                    <td>
+                        {% if rec.is_active %}
+                            <span class="status-green"> ✔ {{rec.days_left}}مدفوع  </span>
+                        {% else %}
+                            <span class="status-red">❌ منتهي</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ rec.id }}</td>
+                    <td>
+                        <a href="{% url 'renew_payment' rec.id %}" class="btn btn-sm btn-success">
+                               🔄 تجديد
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10" class="text-muted py-4">لا توجد سجلات</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+.view-btn {
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+.view-btn:hover {
+    background: linear-gradient(135deg, #0096c7, #023e8a);
+    transform: scale(1.05);
+    color: #fff;
+}
+.status-green { color: green; font-weight: bold; }
+.status-red { color: red; font-weight: bold; }
+
+/* ✅ لون النص داخل الجدول */
+.table tbody tr td {
+    color: #000;
+    font-weight: 500;
+}
+</style>
+{% endblock content %}
